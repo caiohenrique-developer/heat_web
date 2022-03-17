@@ -1,9 +1,12 @@
 import styles from "./App.module.scss";
+import { LoginBox } from "./components/LoginBox";
+import { MessageList } from "./components/MessageList";
 
 export function App() {
   return (
     <main className={styles.contentWrapper}>
-      <h1>Tudo começa com "Hello World", ok mas valeu Vite</h1>
+      <MessageList />
+      <LoginBox />
     </main>
   )
 }
