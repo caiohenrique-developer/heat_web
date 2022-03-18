@@ -27,6 +27,12 @@
   }
 }
 
+.badgeSeal {
+  position: absolute;
+  right: 40px;
+  top: -45px;
+}
+
 .userInformation {
   display: flex;
   align-items: center;
@@ -53,14 +59,23 @@
   }
 
   .userGithub {
-    display: flex;
-    align-items: center;
-
     margin-top: 8px;
-    color: #c4c4cc;
 
-    svg {
-      margin-right: 8px;
+    a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      color: #c4c4cc;
+      text-decoration: none;
+
+      &:focus {
+        filter: brightness(0.8);
+      }
+
+      svg {
+        margin-right: 8px;
+      }
     }
   }
 }

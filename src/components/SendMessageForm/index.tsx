@@ -3,6 +3,7 @@ import { VscGithubInverted, VscSignOut } from 'react-icons/vsc';
 import { AuthContext } from '../../contexts/auth';
 import { api } from '../../services/api';
 import styles from './style.module.scss';
+import badgeSeal from "../../assets/seal.svg";
 
 export function SendMessageForm() {
     const { user, signOut } = useContext(AuthContext);
@@ -25,14 +26,18 @@ export function SendMessageForm() {
                 <VscSignOut size="32" />
             </button>
 
+            <img src={badgeSeal} alt="Badge Build the future" className={styles.badgeSeal} />
+
             <header className={styles.userInformation}>
                 <div className={styles.userImage}>
                     <img src={user?.avatar_url} alt={user?.name} />
                 </div>
                 <strong className={styles.userName}>{user?.name}</strong>
                 <span className={styles.userGithub}>
-                    <VscGithubInverted size="16" />
-                    {user?.login}
+                    <a href={`https://github.com/${user?.login}`} target="_blank">
+                        <VscGithubInverted size="16" />
+                        {user?.login}
+                    </a>
                 </span>
             </header>
 
