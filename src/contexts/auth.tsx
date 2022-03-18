@@ -47,6 +47,18 @@ export function AuthProvider({ children }: AuthProviderProps) {
     }
     
     useEffect(() => {
+        const token = localStorage.getItem('@DoWhile:token');
+
+        if (token) {
+            api.defaults.headers.common.authorization = `Bearer ${token}`;
+            
+            api.get<User>('profile').then(({ data: user }) => {
+                setUser(user);
+            });
+        }
+    }, []);
+
+    useEffect(() => {
         const url = window.location.href;
         
         const hasGithubCOde = url.includes('?code=');
