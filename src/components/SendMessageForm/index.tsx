@@ -3,6 +3,10 @@ import { VscSignOut } from 'react-icons/vsc';
 import { AuthContext } from '../../contexts/auth';
 import { api } from '../../services/api';
 import { SocialAnchor } from '../SocialAnchor';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
 import styles from './style.module.scss';
 import badgeSeal from "../../assets/seal.svg";
 
@@ -14,11 +18,31 @@ export function SendMessageForm() {
     async function handleSendMessage(ev: FormEvent) {
         ev.preventDefault();
         
-        if(!message.trim()) return;
+        if(!message.trim()) {
+            return toast.error('Falha ao enviar mensagem!', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+        };
 
         await api.post('messages', { message });
 
         setMessage('');
+        
+        toast.success('Mensagem enviada com sucesso!', {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
     }
     
     return (
@@ -48,8 +72,9 @@ export function SendMessageForm() {
                     onChange={ev => setMessage(ev.target.value)}
                     placeholder='Qual sua expectativa para o evento?'
                 />
-                <button type='submit'>Enviar mensagem</button>
+                <button onClick={handleSendMessage} type='submit'>Enviar mensagem</button>
             </form>
+            <ToastContainer newestOnTop pauseOnFocusLoss />
         </div>
     )
 }
