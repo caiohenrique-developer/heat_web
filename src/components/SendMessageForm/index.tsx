@@ -1,7 +1,8 @@
 import { FormEvent, useContext, useState } from 'react';
-import { VscGithubInverted, VscSignOut } from 'react-icons/vsc';
+import { VscSignOut } from 'react-icons/vsc';
 import { AuthContext } from '../../contexts/auth';
 import { api } from '../../services/api';
+import { SocialAnchor } from '../SocialAnchor';
 import styles from './style.module.scss';
 import badgeSeal from "../../assets/seal.svg";
 
@@ -34,10 +35,7 @@ export function SendMessageForm() {
                 </div>
                 <strong className={styles.userName}>{user?.name}</strong>
                 <span className={styles.userGithub}>
-                    <a href={`https://github.com/${user?.login}`} target="_blank">
-                        <VscGithubInverted size="16" />
-                        {user?.login}
-                    </a>
+                    <SocialAnchor userLogin={user?.login} />
                 </span>
             </header>
 

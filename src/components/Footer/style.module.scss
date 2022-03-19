@@ -1,0 +1,28 @@
+footer.appFooter {
+  p {
+    padding: 2.6rem;
+
+    color: #e1e1e6;
+    font-size: min(18px, 3vw);
+    text-align: center;
+
+    a {
+      display: inline-block;
+      margin-left: 5px;
+
+      &::after {
+        content: "";
+
+        display: block;
+        width: 0;
+        height: 1px;
+        background: linear-gradient(100deg, #ff008e 0%, #ffcd1e 100%);
+        transition: 0.8s;
+      }
+
+      &:hover::after {
+        width: 100%;
+      }
+    }
+  }
+}
